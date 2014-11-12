@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <header>
-    <div class="col-md-4"><h3 id="heading">WeatherApiParser</h3></div>
-    <div class="col-md-7"></div>
+    <div class="header">
+        <h1 class="title">Check weather now!</h1>
+    </div>
 </header>
