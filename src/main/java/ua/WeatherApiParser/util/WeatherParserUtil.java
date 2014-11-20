@@ -1,9 +1,7 @@
 package ua.WeatherApiParser.util;
 
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.charset.Charset;
+import java.io.*;
 import java.util.Properties;
 
 public class WeatherParserUtil {
@@ -16,37 +14,24 @@ public class WeatherParserUtil {
     public WeatherParserUtil() {
     }
 
-
-
     public String createUrl(String cityInUALenguage){
 
-        System.out.println(cityInUALenguage);
-
-        FileInputStream fis;
-        Properties property = new Properties();
-
+        Properties properties = new Properties();
         try {
-            fis = new FileInputStream("src\\main\\resources\\WeatherParserProperties\\citiesVocabulary.properties");
+            InputStream inputStream =	this.getClass().getResourceAsStream("/WeatherParserProperties/citiesVocabulary.properties");
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+            properties.load(new InputStreamReader(bufferedInputStream, "UTF8"));
 
-            property.load(fis);
-            city = property.getProperty("la");
-            System.out.println(city);
-        } catch (IOException e) {
-            System.err.println("Error!!! File not found!");
+//            properties.load(new InputStreamReader(new FileInputStream("src\\main\\resources\\WeatherParserProperties\\citiesVocabulary.properties"), "UTF8"));
+
+            city = properties.getProperty(cityInUALenguage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
 
         StringBuilder sb = new StringBuilder(64);
         sb.append(urlBeforeCity).append(city).append(urlAfterCity);
         return sb.toString();
-    }
-
-
-    public static void main(String[] args) {
-        WeatherParserUtil wpu = new WeatherParserUtil();
-        System.out.println(wpu.createUrl("la"));
-        System.out.println("Київ");
-
     }
 
 }

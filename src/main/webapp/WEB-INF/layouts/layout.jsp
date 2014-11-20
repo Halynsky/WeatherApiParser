@@ -25,10 +25,9 @@
 <tiles:insertAttribute name="header"/>
 <div class="container" id="white_main">
     <tiles:insertAttribute name="nav"/>
-
-        <tiles:insertAttribute name="body"/>
-    </div>
-    <tiles:insertAttribute name="footer"/>
+    <tiles:insertAttribute name="body"/>
+</div>
+<tiles:insertAttribute name="footer"/>
 </div>
 
 
